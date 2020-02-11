@@ -6,4 +6,4 @@
     1. 使用知网的CAJViewer浏览PDF。
     2. * 方案一：写论文直接用Latex，不用Word。
        * 方案二：Mathpix+Mathtype(收费)----Math截公式图解析Latex语法的句子，然后Mathtype接受latex语法句子转为Word
-       * 方案三：Mathpix+LaTex2Word(谷歌浏览器插件）————在浏览器随便一个位置粘贴mathpix得来的latex语句，然后选中右键使用插件转为Word格式，打开Word插入新公式然后粘贴到公式框中，微调即可。
+       * 方案三：Mathpix+LaTex2Word(谷歌浏览器插件）————在浏览器随便一个位置粘贴mathpix得来的latex语句，然后选中右键使用插件转为Word格式（结果已经保存到剪贴板），打开Word粘贴后微调即可。
