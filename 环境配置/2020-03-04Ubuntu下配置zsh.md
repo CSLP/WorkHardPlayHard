@@ -86,6 +86,7 @@
       * **有两种克隆方式，可以简单的推断出来**
         * https方式：```git clone https://github.com/user/repo.git```
         * ssh方式：```git clone  git@github.com:usr/repo.git```
+      * 配置了ssh后确实无法克隆https的仓库，所以没人问如何去克隆一个https的仓库，因为没必要。如果别人的教程让你克隆https的包，你手动改一下很容易就可以克隆SSL方式的仓库。。。
 
     * #### 各种问题汇总（辛酸泪)
 
