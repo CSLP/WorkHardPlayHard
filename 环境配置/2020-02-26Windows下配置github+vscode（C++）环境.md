@@ -15,15 +15,19 @@
    1. 配置完SSH之后用ssh格式git clone了一个仓库，当时是可以用的 ，但是第二天用ssh -T git@github.com 测试发现不能用了。
       * 方法：进入.ssh目录，就是那个本地存储公私钥对的目录。新建config文件。输入如下：
 ![](https://upload-images.jianshu.io/upload_images/8438096-9c64d46400ef5a87.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)其中User后面的邮箱可随便填，最好与github注册时邮箱一样或者与git配置的邮箱一样即可。然后更改config权限。输入：```sudo chmod 600 config```.搞定。 
+      
    2. 配置完SSH后，之前用https方式克隆下来的仓库无法push。
        *  方法:进入那个仓库，输入（如果你之前已经一直使用https方式进行开发，当前想要切换成为ssh方式进行开发，只需要执行如下几步的操作即可）：
       ``` 
           git remote rm origin  
           git remote add origin  "Git仓库的ssh格式地址"
           git push origin
-       ```
+      ```
+    
    3. 注意：配置完SSH之后再克隆库就只能使用SSH方式克隆了，不能再用HTTPS方式克隆了。
- 
+  
+   4. 关于第三点，确实是这样的，如果迫不得已要克隆https的仓库，比如网上的教程只给了https方式的代码，很简单，改一下网址，https方式改成ssh格式即可。很简单的。
+  
 * #### 知识点
   * windows下powershell很强大，对标linux下的shell，现在windows取消了右键以管理员方式打开，因此如果某些文件鼠标打不开，可以以管理员方式打开powershell然后进入此文件目录打开这个文件。
   * 可以把powershell理解成windows平台的shell类似linux的各种shell。他真的很强大，有自己的一套各种命令，功能几乎等价于linux下的shell。也支持linux下的一些命令，如ls，rm等。
@@ -32,6 +36,8 @@
   * WSL真的是一个值得好好研究一下的东西。从windows视角下看linux子系统，它的根目录在```C:\Users\海内存知己\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs```。从linux子系统视角下看windows，c,d,e盘都挂载在/mnt下。
   * 关于ssh，ssh（secure shell）ssh就是客户端访问服务端建立一个安全的访问。因为linux既能当客户端又能当服务端。当下载了ssh后。若其当客户端，无需任何设置。直接 ssh username@ip即可连接服务端。客户端用ssh表示。如果该机要充当服务端，得首先开启ssh服务端服务，用sshd表示。所以ssh表示客户端，sshd表示服务端，ssh——>sshd。ssh无需开，sshd是需要开的。当客户端用ssh username@ip连接服务端时每次连接都要输入用户名密码。如果不想这么麻烦。可以ssh-keygen生成一对公私钥，客户端保存私钥，把公钥发给服务端。之后再用ssh连接就不用每次都输入密码了。这就是上面github用ssh秘钥的原理。
   * **linux shell情况下发现使用mv或rm文件命令提示无权，用sudo也不行，因为文件正在使用中。。。但是不给提示。关了使用文件的程序即可。**（我就是先https克隆了一个仓库，然后才配的ssh，之后这个仓库就不能push了，后来按照上面的方法修改后。可以push了，但是想用git mv一个目录名字的时候发现怎么也改不了，直接用mv改也不行。然后以为还是git的原因，没配好。结果搜了搜了半天，才发现，原因就是文件正在使用中，所以不能改名，爷服了。）
+  * 小技巧：关于克隆github上大仓库太慢的问题。网上说的改host，或者挂代理什么的就不说了。这里说一个小技巧。可以上码云（gitee）选择导入github仓库的形式新建仓库。（实则是白嫖码云的vpn），然后克隆。然后进仓库的.git 目录，修改config，配置其中的url为github那个仓库的URL（如果不会写这个URL，建议去看看那些直接从github克隆下来的仓库这个url是怎么写的）.这样就搞定了，git push就直接push到github上了。
+  * 上文说了，配置git的时候用户名，邮箱随便填，确实是这样，但是如果邮箱与注册github账户的邮箱不同的话，这样push到仓库的是可以的。但是首页的图示（一片绿那个）不会计算这样的push。所以为了图示好看点，邮箱可以配置和github账户邮箱一样，用户名无所谓。官网的说法是这样的：Commits, issues, and pull requests will appear on your contribution graph. Only when the email address used for the commits in local configuration is associated with your GitOSC account, the commits' contribution will be counted。
 * #### 总结：（针对自己管理自己github上的自己创建的仓库）
   * 配置git，github巨简单。概括来讲，注册github，下个git，随意配置信息，然后克隆仓库修改提交即可（只能用https克隆且每次提交都要输github的用户名密码）或生成ssh秘钥对，github复制其中的公钥，然后使用ssh方式克隆仓库。这样以后提交就无需密码。
 2. ## 配置vsCodeC++编程环境
@@ -77,7 +83,7 @@
              }
         ]
     }
-   ```
+    ```
      * 分析：
        *  其实task.json就是配置如何编译生成一个可执行程序的。vscode本质上是一个编辑器。
        * type表示这是shell类型，label表示这个task任务的名字，后面的launch.json会用到。
