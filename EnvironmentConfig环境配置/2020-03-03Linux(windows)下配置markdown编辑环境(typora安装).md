@@ -20,7 +20,9 @@
       * 决定使用第二句.于是执行```wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -```直接报错,提示```gpg: no valid OpenPGP data found.```.于是查找原因.貌似是这个管道执行有问题.这句的大致意思时前半句生成一个文件,然后后半句打开利用这个文件.不知为何前半句好像没有生成这个文件,所以后半句提示没有文件.网上说试试分开执行.
       * 于是分开执行,执行```wget -qO - https://typora.io/linux/public-key.asc ```,灭有任何反应,也没有生成任何文件(网上说单独执行这句会生成一个文件).于是试试另一种方案.
       * 直接浏览器访问https://typora.io/linux/public-key.asc ,然后就会自动下载一个public-key.asc文件,然后执行```sudo apt-key add public-key.asc```,成功.提示OK.
+      * 注意apt-key那句和wget那句要达成的目的是一样的.
       * 然后继续执行```sudo add-apt-repository 'deb https://typora.io/linux ./'```提示段错误.爷吐了.搜索似乎没人有这种错误.遂放弃.因为我这个Ubuntu好像有问题,所以容易出些奇奇怪怪的问题.每次一开机就会提示system program problem detected,然后让report这个错误.不搞了,等下次重装一下系统在搞.
+      * 好吧,峰回路转,1个月之后,又要用Ubuntu了,所以还得下typora,这次在官网下面发现一行小字,有二进制文件于是乎下了一个晚上终于下下来了,本来以为要编译安装,没想到是安装好的,直接进入它的解压后的包内运行typora就行了,牛逼.
     * #### 知识点
       * linux命令行长命令中的|,||,&,&&的含义
         * |:表示管道
@@ -30,16 +32,16 @@
       * 关于Segmentation fault(core dumped) 错误
           * segmentation fault表示段错误,一般都是访问空指针,不存在的地址或者栈溢出导致的.过程是MMU(内存管理单元)发现这个错误,然后给操作系统发11号信号,然后操作系统终止进程.
           * core dumped(吐核或核心已转储):吐出了一个"核心转储文件"(coredump文件).程序确认出现错误时的“临终遗言” 写入核心转储文件，也是使用gdb调试器最常用到的场景.这个文件是可以查看以确定错误的.具体查看方法这里不谈了.
-    
+  
   * ## Windows
 
     * ### 安装
-
+  
       * 傻瓜式官网无脑安装即可
       * 卧槽，这也太好用了吧，无敌，为什么没有早发现typora这个宝藏软件，这颜值，这方便程度，无敌号好吗。
-    
+  
      * ### 配置
-
+  
          * 安装环境变量即可在powershell中直接打开。
           * 找一个.md文件，选中右键属性改变打开方式为Typora,之后再powershell中直接```start 文件名``` 或者 ```./文件名```即可用typora打开
          
@@ -49,7 +51,7 @@
     
        * ps中若想以默认打开方式打开某文件```start file  or  ./file```
     
-              
+         ​     
   
   
   ​      
